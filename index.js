@@ -40,14 +40,14 @@ db.connect(error => {
     }
 })
 
-// end-point akses data pembeli
-app.get("/pembeli", (req, res) => {
+// end-point akses data pelanggan
+app.get("/pelanggan", (req, res) => {
     // create sql query
-    let sql = "select * from pelanggan"
+    let sql = "select * from datapelanggan"
 
     // run query
     db.query(sql, (error, result) => {
-        let response = null
+        let response =   null
         if (error) {
             response = {
                 message: error.message // pesan error
@@ -55,7 +55,7 @@ app.get("/pembeli", (req, res) => {
         } else {
             response = {
                 count: result.length, // jumlah data
-                pembeli: result // isi data
+                pelanggan : result // isi data
             }
         }
         res.json(response) // send response
@@ -63,9 +63,9 @@ app.get("/pembeli", (req, res) => {
 })
 
 // end-point akses data siswa berdasarkan id_pembeli tertentu
-app.get("/pembeli/:id", (req, res) => {
+app.get("/pelanggan/:id", (req, res) => {
     let data = {
-        id_pembeli: req.params.id
+        id_pelanggan: req.params.id
     }
     // create sql query
     let sql = "select * from datapelanggan where ?"
